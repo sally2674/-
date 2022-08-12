@@ -1,0 +1,149 @@
+# 전형원소의 특징 설명 프로그램(심화버전)
+
+# 변수 설정
+
+while True:
+    group = int(input("알고 싶은 원소가 몇 족인가요?")) # group 값 입력 받기
+    shell = int(input("알고 싶은 원소의 전자껍질수가 어떻게 되나요?? ")) # shell 값 입력 받기
+    v = 0
+    while v >= 0:
+        if 3<= group <= 12 or group > 18:
+            print("이 프로그램은 3~12족의 원소들에 대한 정보는 제공하지 않기 때문에 1~2, 13~18 사이의 숫자만 입력해주세요")
+            group = int(input("알고 싶은 원소가 몇 족인가요?"))
+            shell = int(input("알고 싶은 원소의 전자껍질수가 어떻게 되나요?? "))
+            v += 1
+        else:
+            v = -1
+            n2 = group - 10 # n2 정의
+            e1 = ["","H(수소)", "", "", "", "" ,"" ,"" ,"He(헬륨)"] # 1주기에서 3~12족을 제외한 원소들
+            e2 = ["","Li(리튬)", "Be(베릴륨)", "B(붕소)", "C(탄소)", "N(질소)", "O(산소)", "F(플루오린)", "Ne(네온)"] # 2주기에서 3~12족을 제외한 원소들
+            e3 = ["","Na(나트륨)", "Mg(마그네슘)", "Al(알류미늄)", "Si(규소)", "P(인)", "S(황)", "Cl(염소)", "Ar(아르곤)"] # 3주기에서 3~12족을 제외한 원소들
+            e4 = ["","K(칼륨)", "Ca(칼슘)", "Ga(갈륨)", "Ge(저마늄)", "As(비소)", "Se(셀레늄)", "Br(브로민)", "Kr(크립톤)"] # 4주기에서 3~12족을 제외한 원소들
+            e5 = ["","Rb(루비듐)", "Sr(스트론튬)", "In(인듐)", "Sn(주석)", "Sb(안티모니)", "Te(텔루륨)", "I(아이오딘)", "Xe(제논)"] # 5주기에서 3~12족을 제외한 원소들
+            e6 = ["","Cs(세슘)", "Ba(바륨)", "Tl(탈륨)", "Pb(납)", "Bi(비스무트)", "Po(폴로늄)", "At(아스탄틴)", "Rn(라돈)"] # 6주기에서 3~12족을 제외한 원소들
+            e7 = ["","Fr(프랑슘)", "Ra(라듐)"] # 7주기에서 3~18족을 제외한 원소들
+
+            non-m ="그리고 이 원소는 비금속 원소로 전기음성도가 대체로 높은 편입니다."
+            m = "그리고 이 원소는 금속 원소로 전기전도성이 높고 광택을 띕니다."
+            half-m = "그리고 이 원소는 준금속 원소로 금속원소와 비금속 원소의 중간 성질을 가집니다."
+
+            k = group
+            f = n2
+
+            an1 = group + shell
+            an2 = shell + n2
+
+            f1 = non-m
+            f2 = non-m
+            f3 = non-m
+            f4 = non-m
+            f5 = non-m
+
+ # 조건문으로 원소의 특징 구하기
+
+            if n2 == 8:
+                f = 0
+
+            if shell == 2 and group == 13:
+                f1 = half-m
+            if shell == 2 and group != 13:
+                for group in range(14, 1, 17):
+                    f1 = non-m
+            if shell == 2 and n2 == 8:
+                f1 = non-m
+
+            if shell == 3 and group == 13:
+                f2 = m
+            elif shell == 3 and group == 14:
+                f2 = half-m
+            elif shell == 3 and group >= 15:
+                f2 = non-m
+
+            if shell == 4 and group == 13:
+                f3 = m
+            elif shell == 4 and group == 14 or group == 15:
+                f3 = half-m
+            elif shell == 4 and group >= 16:
+                f3 = non-m
+            elif shell == 4 and n2 == 8:
+                f3 = non-m
+
+            if shell == 5 and group == 13 or group == 14:
+                f4 = m
+            elif shell == 5 and group == 15 or group == 16:
+                f4 = half-m
+            elif shell == 5 and group == 17:
+                f4 = non-m
+            elif shell == 5 and n2 == 8:
+                f4 = non-m
+        
+            if shell == 6 and 13<= group <= 15:
+                f5 = m
+            elif shell ==  6 and group == 16:
+                f5 = half-m
+            elif shell == 6 and group == 17:
+                f5 = non-m
+            elif shell == 6 and n2 == 8:
+                f5 = non-m
+
+# 사용자 정의 함수 지정
+
+            def one():
+                if group == 1 and shell == 1: # 1주기의 1족, 18족 원소 구하기
+                    수소 = e1[group]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소이고" , 수소 , "이고 원자가전자수는" , k , "개이며 원자번호가 1인 전형원소 입니다." , non-m )
+                elif group == 18 and shell == 1:
+                    헬륨 = e1[n2]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소이고", 헬륨 , "이고 원자가전자수는" , f , "개이며 원자번호가 2인 전형원소 입니다." , non-m)
+        
+
+            def two(): # 조건문과 인덱싱을 이용해 임의의 미지수에 원소를 넣고, print 함수를 이용해서 출력하기.
+                if group <= 2 and shell == 2: # 2주기의 1~2족의 원소 구하기
+                    C = e2[group]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인", C , "이고 원자가전자수는" , k , "개이며 원자번호가" , an1 ,"인 전형원소 입니다" , m)
+                elif 13 <= group <= 18 and shell == 2: # 2주기의 13~18족 원소 구하기
+                    E = e2[n2]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",E, "이고 원자가전자수는" , f , "개이며 원자번호가" , an2 , "인 전형원소 입니다", f1)
+
+            def three(): 
+                if group <= 2 and shell == 3: # 3주기의 1~2족의 원소 구하기
+                    D = e3[group]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",D,  "이고 원자가전자수는" , k , "개이며 원자번호가" , an1 - 1 + 8, "인 전형원소 입니다", m)
+                elif 13 <= group <= 18 and shell == 3: # 3주기의 13~18족의 원소 구하기
+                    F = e3[n2]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",F, "이고 원자가전자수는" , f , "개이며 원자번호가" , an2 - 1 + 8, "인 전형원소 입니다", f2)
+
+            def four(): 
+                if group <= 2 and shell == 4: # 4주기의 1~2족의 원소 구하기
+                    O = e4[group]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",O, "이고 원자가전자수는" , k , "개이며 원자번호가" , an1 - 2 + 8*2, "인 전형원소 입니다", m)
+                elif 13 <= group <= 18 and shell == 4: # 4주기의 13~18족의 원소 구하기
+                    M = e4[n2]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",M, "이고 원자가전자수는" , f , "개이며 원자번호가" , an2 - 2 + 8 + 18, "인 전형원소 입니다", f3)
+
+
+            def five():
+                if group <= 2 and shell == 5: # 5주기의 1~2족의 원소 구하기
+                    P = e5[group]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",P,  "이고 원자가전자수는" , k , "개이며 원자번호가" , an1 - 3 + 8*2 + 18, "인 전형원소 입니다", m)
+                elif 13 <= group <= 18 and shell == 5: # 5주기의 13~18족의 원소 구하기
+                    N = e5[n2]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",N, "이고 원자가전자수는" , f , "개이며 원자번호가" , an2 - 3  + 8 + 18*2, "인 전형원소 입니다", f4)
+        
+
+            def six():
+                if group <= 2 and shell == 6: # 6주기의 1~2족의 원소 구하기
+                    R = e6[group]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",R, "이고 원자가전자수는" , k , "개이며 원자번호가" , an1 - 4 + 8*2 + 18*2, "인 전형원소 입니다", m)
+                elif 13 <= group <= 18 and shell == 6: # 6주기의 13~18족의 원소 구하기
+                    Q = e6[n2]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",Q, "이고 원자가전자수는" , f , "개이며 원자번호가" , an2 - 4 + 8 + 18*3 + 14, "인 전형원소 입니다", f5)
+
+            def seven():
+                if group <= 2 and shell == 7: # 7주기의 1~2족의 원소 구하기
+                    S = e7[group]
+                    print("그 원소는" , group , "족의" , shell , "주기의 원소인",S,  "이고 원자가전자수는" , k , "개이며 원자번호가" , an1 - 5 + 8*2 + 18*3  + 14 , "인  전형원소 입니다", m)
+
+        
+# 함수 실행
+            one(),two(),three(),four(),five(),six(),seven() 
